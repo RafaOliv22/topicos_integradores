@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -8,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>Lista de clientes</title>
 </head>
 
@@ -26,13 +26,18 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cliente.php">
+                        <a class="nav-link" href="listaclientes.php">
                             <i class="fa-solid fa-user"> </i> Clientes
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="listausuario.php">
                             <i class="fa-solid fa-users"> </i> Usuário
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="listafornecedor.php">
+                        <i class="bi bi-box-seam-fill"></i> Fornecedor
                         </a>
                     </li>
                 </ul>
@@ -43,50 +48,65 @@
     <div class="modal fade" id="cadastrocliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <form method="post" name="frmcliente" id="frmcliente">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Dados do cliente</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="alert alert-warning" role="alert">
-                                Todos os campos com <span class="text-danger"> * </span> são obrigatórios para o cadastro!
+                <form method="post" name="frmcliente" id="frmcliente">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Dados do cliente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- AQUI TEMOS UMA LINHA -->
+                        <div class="row">
+                            <!-- AQUI TEMOS UMA COLUNA OCUPANDO 100% DO TAMANHO DA LINHA -->
+                            <div class="col-12">
+                                <!-- AQUI TEMOS O COMPONENTE ALERT -->
+                                <div id="alerta" class="alert alert-warning" role="alert">
+                                    <!-- AQUI TEMOS O TITULO DO ALERT DO BOOTSTRAP -->
+                                    <div id="titulo" class="mb-0">
+                                        <h6 class="alert-heading">Atenção!</h6>
+                                        Todos os campos com <span class="text-danger"> * </span> são obrigatórios para o
+                                        cadastro!
+                                    </div>
+                                    <!-- AQUI TEMOS SPINNER PARA MENSAGEM DE SALVANDO -->
+                                    <div id="carregando" class="mb-0 d-none">
+                                        <div class="spinner-border text-primary spinner-border-sm" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <span>Salvando...</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            
-                            
-                                <div class="mb-3">
-                                    <label for="nome" class="form-label">Nome <span class="text-danger"> * </span> </label>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="nome" class="form-label">Nome <span class="text-danger"> * </span>
+                                    </label>
                                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome!" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="sobrenome" class="form-label">Sobrenome <span class="text-danger"> * </span> </label>
+                                <div class="form-group">
+                                    <label for="sobrenome" class="form-label">Sobrenome <span class="text-danger"> *
+                                        </span> </label>
                                     <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="Digite seu sobre nome!" required>
                                 </div>
-                                <div class="mb-3">
+                                <div class="form-group">
                                     <label for="cpf" class="form-label">Cpf</label>
                                     <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite seu CPF!">
                                 </div>
-                            
+                            </div>
                         </div>
+
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                        Fechar
-                    </button>
-                    <button id="btnsalvar" type="button" class="btn btn-success">
-                        <i class="fa-solid fa-floppy-disks"> </i> Salvar
-                    </button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-xmark"> </i> Fechar
+                        </button>
+                        <button id="btnsalvar" type="button" class="btn btn-success">
+                            <i class="fa-solid fa-floppy-disk"></i> Salvar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-        </form>
     </div>
     <div class="container">
         <div class="row">
@@ -116,7 +136,7 @@
                                 <tr>
                                     <td>Código</td>
                                     <td>Nome</td>
-                                    <td>Sobre nome</td>
+                                    <td>Sobrenome</td>
                                     <td>Cpf</td>
                                     <td>Ação</td>
                                 </tr>
@@ -130,8 +150,21 @@
             </div>
         </div>
     </div>
-
+    <!-- TEMOS OS RECURSSOS DA BIBLIOTECA JQUERY -->
+    <script src="js/jquery.min.js"></script>
+    <!-- TEMOS OS RECURSSOS DA BIBLIOTECA BOOTSTRAP -->
     <script src="js/bootstrap.min.js"></script>
+    <!-- TEMOS OS RECURSSOS DA BIBLIOTECA DE MASCARAS -->
+    <script src="js/inputmask.min.js"></script>
+    <script src="js/inputmask.extensions.min.js"></script>
+    <script src="js/inputmask.numeric.extensions.min.js"></script>
+    <script src="js/jquery.inputmask.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/localization/messages_pt_BR.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/localization/methods_pt.min.js"></script>
+
     <script src="js/request.js"></script>
     <script src="js/cliente.js"></script>
 </body>

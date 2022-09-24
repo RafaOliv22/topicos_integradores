@@ -1,3 +1,6 @@
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Aula unesc</a>
@@ -7,14 +10,19 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Início</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">Início</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="listaclientes.php">Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Usuário</a>
+                    <a class="nav-link" href="listausuario.php">Usuário</a>
                 </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="listafornecedor.php">
+                        <i class="bi bi-box-seam-fill"></i> Fornecedor
+                        </a>
+                    </li>
             </ul>
         </div>
     </div>
