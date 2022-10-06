@@ -33,7 +33,9 @@ $('#frmcliente').validate({
         $(element).addClass('is-valid');
     }
 });
-
+function deleta(id) {
+    alert(id);
+}
 async function lista_cliente() {
     //monstamos a configuração da requição
     //ao servidor http
@@ -65,39 +67,6 @@ async function inserir() {
         body: formData,
         cache: 'default'
     }
-
-    async function deletar(id){
-        document.getElementById('idcliente').value = id;
-        const form = document.querySelector('#clientes');
-        dados = new FormData (form);
-        const opt = {
-            method: 'POST',
-            body: dados,
-            mode: 'cors',
-            cache: 'default'
-        };
-        const response = await fetch ('delete.php'), opt;
-        const data = await response.text();
-        if (data=='true'{
-             $('#tr' +id).remove();
-
-        }
-    }
-    async function update(){
-        alerta.className ='alert alert-success';
-        titulo.className = 'mb-0';
-        titulo.innerHTML = '<p>Alteração realizada com sucesso!';
-        const form = document.querySelector{"#frmcliente"}
-        const dados = new FormData(form);
-        const opt = {
-            method: 'POST',
-            body: dados,
-            mode: 'cors',
-            cache: 'default'
-            
-        } 
-    }
-
     const response = await fetch('cadastro.php', opt);
     const dados = await response.text();
     console.log(dados);

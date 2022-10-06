@@ -6,7 +6,7 @@ const titulo = document.querySelector("#titulo");
 const carregando = document.querySelector("#carregando");
 
 //CONFIGURAÇÕES DOS PARAMENTRO DE VALIDAÇÃO DO FORMULÁRIO
-$('#frmcliente').validate({
+$('#frmfornecedor').validate({
     //adiconamos regras de validação ao formulário
     rules: {
         //bloqueamos uma quantidade minima de caracteres
@@ -33,8 +33,10 @@ $('#frmcliente').validate({
         $(element).addClass('is-valid');
     }
 });
-
-async function lista_cliente() {
+function deleta(id) {
+    alert(id);
+}
+async function lista_fornecedores() {
     //monstamos a configuração da requição
     //ao servidor http
     const opt = {
@@ -44,7 +46,7 @@ async function lista_cliente() {
     }
     //A VARIAVEL response RECEBERÁ UMA PROMISSE
     //DE UMA TENTATIVA DE REQUISIÇÃO.
-    const response = await send('listacliente.php', opt);
+    const response = await send('listafornecedor.php', opt);
     //CONVERTEMOS O A RESPOSTA  PARA TEXTO
     //QUE TERÁ UMA ESTRUTURA HTML
     const html = await response.text();
@@ -54,7 +56,7 @@ async function lista_cliente() {
 }
 
 async function inserir() {
-    const form = document.querySelector("#frmcliente");
+    const form = document.querySelector("#frmfornecedor");
     const formData = new FormData(form);
     /*formData.append('nome', document.getElementById('nome').value);
     formData.append('sobrenome', document.getElementById('nome').value);
@@ -65,40 +67,7 @@ async function inserir() {
         body: formData,
         cache: 'default'
     }
-
-    async function deletar(id){
-        document.getElementById('idcliente').value = id;
-        const form = document.querySelector('#clientes');
-        dados = new FormData (form);
-        const opt = {
-            method: 'POST',
-            body: dados,
-            mode: 'cors',
-            cache: 'default'
-        };
-        const response = await fetch ('delete.php'), opt;
-        const data = await response.text();
-        if (data=='true'{
-             $('#tr' +id).remove();
-
-        }
-    }
-    async function update(){
-        alerta.className ='alert alert-success';
-        titulo.className = 'mb-0';
-        titulo.innerHTML = '<p>Alteração realizada com sucesso!';
-        const form = document.querySelector{"#frmcliente"}
-        const dados = new FormData(form);
-        const opt = {
-            method: 'POST',
-            body: dados,
-            mode: 'cors',
-            cache: 'default'
-            
-        } 
-    }
-
-    const response = await fetch('cadastro.php', opt);
+    const response = await fetch('cadastrofornecedor.php', opt);
     const dados = await response.text();
     console.log(dados);
     console.log(dados);
@@ -111,12 +80,12 @@ async function inserir() {
         titulo.innerHTML = `<p>Cadastro realizado com sucesso!`;
         //OCULTA O ICONES CARREGANDO
         carregando.className = 'mb-0 d-none';
-        lista_cliente();
+        lista_fornecedores();
         //aguardamos 0,5 seg para fechar o modal
         setTimeout(() => {
             //fecha o modal
-            $("#cadastrocliente").modal('hide');
-            $("#frmcliente input").val('');
+            $("#cadastrofornecedor").modal('hide');
+            $("#frmfornecedor input").val('');
             $("#alerta").removeClass('alert alert-success');
             $('#alerta').addClass('alert alert-warning');
             $("#titulo").removeClass('d-none');
@@ -134,16 +103,16 @@ async function inserir() {
 }
 //MAPEAMOS O EVENTO DE CARREGAMENTO DO DOCUMENTO
 document.addEventListener("DOMContentLoaded", function () {
-    lista_cliente();
+    lista_fornecedores();
 });
 
 atualiza.addEventListener('click', async function () {
-    lista_cliente();
+    lista_fornecedores();
 });
 
 salvar.addEventListener('click', function () {
     //RECEBEMOS O RESULTADO DA VALIDAÇÃO DO FORMULARIO
-    const valida = $('#frmcliente').valid();
+    const valida = $('#frmfornecedor').valid();
     // let acao = document.getElementById("edtacao");
     if (valida == true) {
         alerta.className = 'alert alert-primary';

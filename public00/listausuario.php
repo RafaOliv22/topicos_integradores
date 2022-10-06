@@ -1,19 +1,20 @@
 <?php
 include "Conection.php";
-$clientes = $pdo->query('select * from fornecedor;')->fetchAll();
+$usuario = $pdo->query('select * from usuario;')->fetchAll();
 $dados = "";
-foreach ($clientes as $key => $value) {
+foreach ($usuario as $key => $value) {
     $dados = $dados . "<tr>" .
         "<td>" . $value['id'] . "</td>" .
         "<td>" . $value['nome'] . "</td>" .
-        "<td>" . $value['cnpj'] . "</td>" .
-        "<td>" . $value['contato'] . "</td>" .
-        "<td>" .      
+        "<td>" . $value['sobre_nome'] . "</td>" .
+        "<td>" . $value['cpf'] . "</td>" .
+        "<td>" .
+        "<td>" .
         "<div class='btn-group' role='group'>" .
-        "<a href='editarfornecedor.php?id=" . $value['id'] . "' type='button' class='btn btn-warning'>" .
+        "<a href='usuario.php?id=" . $value['id'] . "' type='button' class='btn btn-warning'>" .
         "<i class='fa-solid fa-pen-to-square'> </i> Editar" .
         "</a>" .
-        "<button type='button' class='btn btn-danger'>" .
+        "<button onclick='deleta(" . $value['id'] . ");' type='button' class='btn btn-danger'>" .
         "<i class='fa-solid fa-trash'> </i> Excluir" .
         "</button>" .
         "</div>" .
